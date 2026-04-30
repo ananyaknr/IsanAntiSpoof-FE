@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import "./App.css";
 import HeroSection from "./components/HeroSection";
 // import WaveformSVG from "./components/WaveformSVG";
-import SpectrogramCanvas from "./components/SpectrogramCanvas";
+// import SpectrogramCanvas from "./components/SpectrogramCanvas";
 import { FadeIn } from "./components/FadeIn";
 import DemoSection from "./components/DemoSection";
 import RealSpectrogram from "./components/RealSpectrogram";
