@@ -5,6 +5,7 @@ import HeroSection from "./components/HeroSection";
 import SpectrogramCanvas from "./components/SpectrogramCanvas";
 import { FadeIn } from "./components/FadeIn";
 import DemoSection from "./components/DemoSection";
+import RealSpectrogram from "./components/RealSpectrogram";
 
 // ─── CSS INJECTION ────────────────────────────────────────────────────────────
 const STYLES = `
@@ -468,7 +469,7 @@ export default function App() {
 
           <FadeIn delay={100}>
             <div className="spectrogram-container">
-              <div className="spectrogram-panel">
+              {/* <div className="spectrogram-panel">
                 <div className="spectrogram-label real">◉ Genuine Isan Speech</div>
                 <SpectrogramCanvas isReal={true} animated={true} />
                 <p style={{ fontSize: "0.78rem", color: "var(--fog)", lineHeight: 1.6, marginTop: "0.75rem" }}>
@@ -479,6 +480,24 @@ export default function App() {
               <div className="spectrogram-panel">
                 <div className="spectrogram-label fake">◈ Synthetic Isan Clone</div>
                 <SpectrogramCanvas isReal={false} animated={true} />
+                <p style={{ fontSize: "0.78rem", color: "var(--fog)", lineHeight: 1.6, marginTop: "0.75rem" }}>
+                  Unnaturally regular periodicity. "Synthetic silence" above 7 kHz.
+                  Absent micro-variations that define real vocal tract behavior.
+                </p>
+              </div> */}
+              {/* Replace the old SpectrogramCanvas with RealSpectrogram */}
+              <div className="spectrogram-panel">
+                <div className="spectrogram-label real">◉ Genuine Isan Speech</div>
+                <RealSpectrogram audioUrl="/audio/isan_bonafide.wav" isReal={true} />
+                <p style={{ fontSize: "0.78rem", color: "var(--fog)", lineHeight: 1.6, marginTop: "0.75rem" }}>
+                  Natural jitter and shimmer in tonal transitions. Irregular micro-variations
+                  across formant regions. Energy present above 6 kHz.
+                </p>
+              </div>
+
+              <div className="spectrogram-panel">
+                <div className="spectrogram-label fake">◈ Synthetic Isan Clone</div>
+                <RealSpectrogram audioUrl="/audio/isan_spoofed.wav" isReal={false} />
                 <p style={{ fontSize: "0.78rem", color: "var(--fog)", lineHeight: 1.6, marginTop: "0.75rem" }}>
                   Unnaturally regular periodicity. "Synthetic silence" above 7 kHz.
                   Absent micro-variations that define real vocal tract behavior.
@@ -593,10 +612,11 @@ export default function App() {
       {/* ══════════════════════════════════════════════════════════════
           06 — ARCHITECTURE
       ══════════════════════════════════════════════════════════════ */}
+      {/*
       <section id="tech" className="section-pad" style={{ borderTop: "1px solid var(--border)" }}>
         <div className="container">
           <FadeIn>
-            {/* <div className="section-label">06 — Under the Hood</div> */}
+            <div className="section-label">06 — Under the Hood</div>
             <h2 className="section-title">The inference <em>pipeline</em></h2>
             <p className="section-body">
               The model never receives raw audio. It receives a visual representation
@@ -636,7 +656,7 @@ export default function App() {
               ))}
             </div>
           </FadeIn>
-{/* 
+
           <FadeIn delay={200}>
             <div className="tech-grid">
               {[
@@ -653,9 +673,9 @@ export default function App() {
                 </div>
               ))}
             </div>
-          </FadeIn> */}
+          </FadeIn>
         </div>
-      </section>
+      </section>*/}
 
       {/* ══════════════════════════════════════════════════════════════
           07 — CTA

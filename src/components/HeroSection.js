@@ -388,8 +388,8 @@ export default function HeroSection() {
                 className="hero-avatar"
               />
 
-              <div className="floating-text float-1">ม่วนซื่น</div>
-              <div className="floating-text float-2">ปลอดภัย</div>
+              <div className="floating-text float-1">ตรวจภาษาอีสาน</div>
+              <div className="floating-text float-2">ปลอดภัยขึ้น</div>
             </div>
           </div>
         </div>
