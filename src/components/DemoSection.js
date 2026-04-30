@@ -28,7 +28,7 @@ export default function DemoSection() {
     <section id="demo" className="demo-bg section-pad">
       <div className="container">
         <FadeIn>
-          <div className="section-label">05 — Live Demo</div>
+          {/* <div className="section-label">05 — Live Demo</div> */}
           <h2 className="section-title">Hear the <em>difference</em></h2>
           <p className="section-body">
             Upload a voice clip or select one of the curated samples below.

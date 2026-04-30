@@ -596,7 +596,7 @@ export default function App() {
       <section id="tech" className="section-pad" style={{ borderTop: "1px solid var(--border)" }}>
         <div className="container">
           <FadeIn>
-            <div className="section-label">06 — Under the Hood</div>
+            {/* <div className="section-label">06 — Under the Hood</div> */}
             <h2 className="section-title">The inference <em>pipeline</em></h2>
             <p className="section-body">
               The model never receives raw audio. It receives a visual representation
