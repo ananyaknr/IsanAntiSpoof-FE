@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import "./App.css";
 import HeroSection from "./components/HeroSection";
-import WaveformSVG from "./components/WaveformSVG";
+// import WaveformSVG from "./components/WaveformSVG";
 import SpectrogramCanvas from "./components/SpectrogramCanvas";
 import { FadeIn } from "./components/FadeIn";
 import DemoSection from "./components/DemoSection";
@@ -348,7 +348,9 @@ const STYLES = `
 
 // ─── MAIN APP ─────────────────────────────────────────────────────────────────
 export default function App() {
+  // eslint-disable-next-line no-unused-vars
   const [scrolled, setScrolled] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [toneVisible, setToneVisible] = useState(false);
   const toneRef = useRef(null);
 
