@@ -1,6 +1,7 @@
+// eslint-disable-next-line no-unused-vars
 import { useRef, useEffect } from "react";
 import WaveformSVG from "./WaveformSVG";
-import { FadeIn } from "./FadeIn";
+// import { FadeIn } from "./FadeIn";
 
 const HERO_STYLES = `
   :root {
