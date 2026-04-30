@@ -127,7 +127,7 @@
 .float-1 {
   top: 10%;
   right: -5%;
-  color: var(--lotus-pink);
+  color: var(--primary-red);
   animation: floatDelayed 5s ease-in-out infinite;
 }
 

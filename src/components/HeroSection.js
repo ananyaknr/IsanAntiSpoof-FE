@@ -13,12 +13,12 @@ const HERO_STYLES = `
     --surface: #FFFFFF;       /* Clean white for cards */
     --surface-2: #F6F1ED;     /* Soft clay/beige for secondary surfaces */
     
-    --lotus-pink: #D47990;    /* Muted Isan magenta/pink */
-    --lotus-pink-lt: #EBBAC7;
+    --primary-red: #E63946;   /* Vibrant red for primary accent */
+    --primary-red-lt: #F1CED1;
     --mohom-blue: #5B728A;    /* Muted Indigo / Mo-Hom shirt color */
     --mohom-blue-lt: #8A9FB5;
-    --silk-gold: #DCA75A;     /* Soft yellow/gold */
-    --silk-gold-lt: #F2D2A2;
+    --cream: #FFF8E7;         /* Warm cream/ivory */
+    --cream-lt: #FFFDF5;
     --mudmee-green: #6C967D;  /* Soft green for success/safe states */
     --brick-red: #C76B61;     /* Soft red for danger/fake states */
 
@@ -26,7 +26,7 @@ const HERO_STYLES = `
     --border-2: rgba(91, 114, 138, 0.25);
     
     /* ── ISAN TYPOGRAPHY ── */
-    --serif: 'Pridi', serif;           /* Traditional, friendly headers */
+    --serif: 'Poppins', sans-serif;    /* Playful, modern headers */
     --mono: 'Kanit', sans-serif;       /* Modern, clean UI text */
     --body: 'Sarabun', sans-serif;     /* Highly readable body text */
   }
@@ -46,8 +46,8 @@ const HERO_STYLES = `
     position: absolute;
     inset: 0;
     z-index: 0;
-    background: radial-gradient(circle at 70% 30%, rgba(212, 121, 144, 0.08) 0%, transparent 60%),
-                radial-gradient(circle at 30% 70%, rgba(220, 167, 90, 0.1) 0%, transparent 50%);
+    background: radial-gradient(circle at 70% 30%, rgba(230, 57, 70, 0.08) 0%, transparent 60%),
+                radial-gradient(circle at 30% 70%, rgba(91, 114, 138, 0.1) 0%, transparent 50%);
   }
 
   .hero-grid-lines {
@@ -138,7 +138,7 @@ const HERO_STYLES = `
 
   .hero-title em {
     font-style: normal;
-    color: var(--lotus-pink);
+    color: var(--primary-red);
   }
 
   .hero-sub {
@@ -159,7 +159,7 @@ const HERO_STYLES = `
 
   .btn-primary {
     padding: 0.8rem 2rem;
-    background: var(--lotus-pink);
+    background: var(--primary-red);
     color: #fff;
     border: none;
     border-radius: 50px;
@@ -253,7 +253,7 @@ const HERO_STYLES = `
   .float-1 {
     top: 10%;
     right: -5%;
-    color: var(--lotus-pink);
+    color: var(--primary-red);
     animation: floatDelayed 5s ease-in-out infinite;
   }
 
