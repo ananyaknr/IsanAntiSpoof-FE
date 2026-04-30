@@ -634,7 +634,7 @@ export default function App() {
               ))}
             </div>
           </FadeIn>
-
+{/* 
           <FadeIn delay={200}>
             <div className="tech-grid">
               {[
@@ -651,7 +651,7 @@ export default function App() {
                 </div>
               ))}
             </div>
-          </FadeIn>
+          </FadeIn> */}
         </div>
       </section>
 
