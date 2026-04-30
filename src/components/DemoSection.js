@@ -8,42 +8,48 @@ const SAMPLES = [
     name: "Isan Speaker (Female, ID 094)", 
     type: "real", 
     path: "/sample-audio/bonafide/speaker_f_094_fin_0229.wav",
-    duration: "4.2s" 
+    duration: "4.2s",
+    score: 12 // Pre-calculated safe score
   },
   { 
     id: 2, 
     name: "Isan Speaker (Female, ID 138)", 
     type: "real", 
     path: "/sample-audio/bonafide/speaker_f_138_fin_0593.wav",
-    duration: "3.8s" 
+    duration: "3.8s",
+    score: 8 // Pre-calculated safe score
   },
   { 
     id: 3, 
     name: "Isan Speaker (Male, ID 008)", 
     type: "real", 
     path: "/sample-audio/bonafide/speaker_m_008_fin_0119.wav", 
-    duration: "4.5s" 
+    duration: "4.5s",
+    score: 15 // Pre-calculated safe score
   },
   { 
     id: 4, 
     name: "TTS Clone — Voice ID 094", 
     type: "fake", 
     path: "/sample-audio/spoofed/fake-speaker_f_094_og-f_027_fin_0201_f_094.wav",
-    duration: "3.1s" 
+    duration: "3.1s",
+    score: 94 // Pre-calculated fake score
   },
   { 
     id: 5, 
     name: "TTS Clone — Voice ID 138", 
     type: "fake", 
     path: "/sample-audio/spoofed/fake-speaker_f_138_og-f_039_fin_0325_f_138.wav",
-    duration: "3.5s" 
+    duration: "3.5s",
+    score: 91 // Pre-calculated fake score
   },
   { 
     id: 6, 
     name: "TTS Clone — Voice ID 008", 
     type: "fake", 
     path: "/sample-audio/spoofed/fake-speaker_m_008_og-f_080_fin_0142_m_008.wav",
-    duration: "2.9s" 
+    duration: "2.9s",
+    score: 98 // Pre-calculated fake score
   }
 ];
 
@@ -109,29 +115,20 @@ export default function DemoSection() {
     analyzeAudio(file, file.name);
   }, [analyzeAudio]);
 
-  const runAnalysis = useCallback(async (sample) => {
+  const runAnalysis = useCallback((sample) => {
     setState("analyzing");
     setError(null);
 
-    try {
-      // 1. Fetch the file from the public folder
-      const response = await fetch(sample.path);
-      if (!response.ok) throw new Error("Could not load sample audio file.");
-      
-      const blob = await response.blob();
-      
-      // 2. Convert Blob to a File object (optional, but helps with metadata)
-      const file = new File([blob], `${sample.id}.wav`, { type: blob.type });
-
-      // 3. Reuse your existing API logic
-      await analyzeAudio(file, sample.name);
-      
-    } catch (err) {
-      console.error('Sample analysis failed:', err);
-      setError("Failed to load sample audio.");
-      setState("idle");
-    }
-  }, [analyzeAudio]);
+    // Simulate network and processing delay so the UI animation still plays
+    setTimeout(() => {
+      setResult({
+        score: sample.score,
+        name: sample.name,
+        duration: sample.duration
+      });
+      setState("result");
+    }, 1500); // 1.5 second delay feels like a real API call
+  }, []);
 
   const isSafe = result && result.score < 50;
 
