@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import WaveformSVG from "./WaveformSVG";
 import { FadeIn } from "./FadeIn";
 
@@ -9,7 +9,7 @@ const SAMPLES = [
     type: "real", 
     path: "/sample-audio/bonafide/speaker_f_094_fin_0229.wav",
     duration: "4.2s",
-    score: 12 // Pre-calculated safe score
+    score: 12
   },
   { 
     id: 2, 
@@ -17,7 +17,7 @@ const SAMPLES = [
     type: "real", 
     path: "/sample-audio/bonafide/speaker_f_138_fin_0593.wav",
     duration: "3.8s",
-    score: 8 // Pre-calculated safe score
+    score: 8
   },
   { 
     id: 3, 
@@ -25,7 +25,7 @@ const SAMPLES = [
     type: "real", 
     path: "/sample-audio/bonafide/speaker_m_008_fin_0119.wav", 
     duration: "4.5s",
-    score: 15 // Pre-calculated safe score
+    score: 15
   },
   { 
     id: 4, 
@@ -33,7 +33,7 @@ const SAMPLES = [
     type: "fake", 
     path: "/sample-audio/spoofed/fake-speaker_f_094_og-f_027_fin_0201_f_094.wav",
     duration: "3.1s",
-    score: 94 // Pre-calculated fake score
+    score: 94
   },
   { 
     id: 5, 
@@ -41,7 +41,7 @@ const SAMPLES = [
     type: "fake", 
     path: "/sample-audio/spoofed/fake-speaker_f_138_og-f_039_fin_0325_f_138.wav",
     duration: "3.5s",
-    score: 91 // Pre-calculated fake score
+    score: 91
   },
   { 
     id: 6, 
@@ -49,7 +49,7 @@ const SAMPLES = [
     type: "fake", 
     path: "/sample-audio/spoofed/fake-speaker_m_008_og-f_080_fin_0142_m_008.wav",
     duration: "2.9s",
-    score: 98 // Pre-calculated fake score
+    score: 98
   }
 ];
 
@@ -61,6 +61,50 @@ export default function DemoSection() {
   const [result, setResult] = useState(null);
   const [drag, setDrag] = useState(false);
   const [error, setError] = useState(null);
+  
+  // Audio playback state
+  const [playingId, setPlayingId] = useState(null);
+  const audioRef = useRef(null);
+
+  // Cleanup audio if component unmounts
+  useEffect(() => {
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+    };
+  }, []);
+
+  const togglePlay = useCallback((e, sample) => {
+    e.stopPropagation(); // Prevents the row click (runAnalysis) from firing
+
+    if (playingId === sample.id) {
+      // Pause if currently playing
+      audioRef.current.pause();
+      setPlayingId(null);
+    } else {
+      // Stop previous audio and play new one
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
+      
+      const audio = new Audio(sample.path);
+      audioRef.current = audio;
+      
+      audio.play().catch(err => {
+        console.error("Audio playback failed:", err);
+        setError("Could not play audio. Please check the file path.");
+        setPlayingId(null);
+      });
+
+      audio.onended = () => {
+        setPlayingId(null);
+      };
+      
+      setPlayingId(sample.id);
+    }
+  }, [playingId]);
 
   const analyzeAudio = useCallback(async (audioFile, fileName = "Uploaded file") => {
     setState("analyzing");
@@ -136,7 +180,6 @@ export default function DemoSection() {
     <section id="demo" className="demo-bg section-pad">
       <div className="container">
         <FadeIn>
-          {/* <div className="section-label">05 — Live Demo</div> */}
           <h2 className="section-title">Hear the <em>difference</em></h2>
           <p className="section-body">
             Upload a voice clip or select one of the curated samples below.
@@ -178,11 +221,43 @@ export default function DemoSection() {
 
             <div className="sample-label">Curated samples</div>
             {SAMPLES.map(s => (
-              <button
+              <div
                 key={s.id}
                 className="sample-btn"
-                onClick={() => runAnalysis(s)} // Pass the full object
+                onClick={() => runAnalysis(s)}
+                role="button"
+                tabIndex={0}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.75rem",
+                  cursor: "pointer"
+                }}
               >
+                {/* Play/Stop Button inside the row */}
+                <button
+                  onClick={(e) => togglePlay(e, s)}
+                  title={playingId === s.id ? "Stop audio" : "Play audio"}
+                  style={{
+                    background: playingId === s.id ? "var(--indigo, #6366f1)" : "transparent",
+                    color: playingId === s.id ? "#fff" : "var(--fog, #888)",
+                    border: `1px solid ${playingId === s.id ? "var(--indigo, #6366f1)" : "var(--fog-lt, #ccc)"}`,
+                    borderRadius: "50%",
+                    width: "28px",
+                    height: "28px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    cursor: "pointer",
+                    flexShrink: 0,
+                    padding: 0,
+                    fontSize: "0.7rem",
+                    transition: "all 0.2s ease"
+                  }}
+                >
+                  {playingId === s.id ? "■" : "▶"}
+                </button>
+
                 <span className={`tag ${s.type === "real" ? "tag-real" : "tag-fake"}`}>
                   {s.type}
                 </span>
@@ -190,7 +265,7 @@ export default function DemoSection() {
                 <span style={{ fontFamily: "var(--mono)", fontSize: "0.68rem", color: "var(--fog)" }}>
                   {s.duration}
                 </span>
-              </button>
+              </div>
             ))}
 
             <div style={{ marginTop: "1.5rem", padding: "1rem", background: "var(--surface-2)", borderLeft: "3px solid var(--indigo)", fontSize: "0.82rem", color: "var(--fog-lt)", lineHeight: 1.6 }}>
