@@ -363,9 +363,11 @@ export default function HeroSection() {
             </div> */}
 
             <h1 className="hero-title fade-in">
-              The Northeast<br />
-              has a voice.<br />
-              <em>Now it has a shield.</em>
+              Man-Khak<br />
+              <small style={{ fontSize: '0.5em', display: 'block', fontWeight: 'normal', marginTop: '10px' }}>
+                The Northeast<br />
+                has a voice. <em>Now it has a shield.</em>
+              </small>
             </h1>
 
             <p className="hero-sub fade-in">

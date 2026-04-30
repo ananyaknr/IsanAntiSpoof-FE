@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import "./App.css";
 import HeroSection from "./components/HeroSection";
 // import WaveformSVG from "./components/WaveformSVG";
-// import SpectrogramCanvas from "./components/SpectrogramCanvas";
+import SpectrogramCanvas from "./components/SpectrogramCanvas";
 import { FadeIn } from "./components/FadeIn";
 import DemoSection from "./components/DemoSection";
 import RealSpectrogram from "./components/RealSpectrogram";
@@ -455,10 +455,10 @@ export default function App() {
       {/* ══════════════════════════════════════════════════════════════
           03 — LINGUISTICS
       ══════════════════════════════════════════════════════════════ */}
-      <section id="linguistics" className="section-pad">
+      {/* <section id="linguistics" className="section-pad">
         <div className="container">
           <FadeIn>
-            {/* <div className="section-label">03 — How Isan Sounds Different</div> */}
+            <div className="section-label">03 — How Isan Sounds Different</div>
             <h2 className="section-title">The acoustic <em>fingerprint</em></h2>
             <p className="section-body">
               Isan is not a "different accent." It is a distinct tonal language.
@@ -469,7 +469,7 @@ export default function App() {
 
           <FadeIn delay={100}>
             <div className="spectrogram-container">
-              {/* <div className="spectrogram-panel">
+              <div className="spectrogram-panel">
                 <div className="spectrogram-label real">◉ Genuine Isan Speech</div>
                 <SpectrogramCanvas isReal={true} animated={true} />
                 <p style={{ fontSize: "0.78rem", color: "var(--fog)", lineHeight: 1.6, marginTop: "0.75rem" }}>
@@ -484,8 +484,7 @@ export default function App() {
                   Unnaturally regular periodicity. "Synthetic silence" above 7 kHz.
                   Absent micro-variations that define real vocal tract behavior.
                 </p>
-              </div> */}
-              {/* Replace the old SpectrogramCanvas with RealSpectrogram */}
+              </div>
               <div className="spectrogram-panel">
                 <div className="spectrogram-label real">◉ Genuine Isan Speech</div>
                 <RealSpectrogram audioUrl="/audio/isan_bonafide.wav" isReal={true} />
@@ -506,7 +505,7 @@ export default function App() {
             </div>
           </FadeIn>
 
-          {/* <FadeIn delay={200}>
+          <FadeIn delay={200}>
             <div ref={toneRef} className="tone-comparison">
               <div style={{ fontFamily: "var(--mono)", fontSize: "0.68rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--indigo-lt)", marginBottom: "1.25rem" }}>
                 Tonal complexity comparison
@@ -539,9 +538,9 @@ export default function App() {
                 systematic errors in both directions.
               </p>
             </div>
-          </FadeIn> */}
+          </FadeIn>
         </div>
-      </section>
+      </section> */}
 
       {/* ══════════════════════════════════════════════════════════════
           04 — ORIGIN STORY
@@ -731,7 +730,7 @@ export default function App() {
 
       {/* ── FOOTER ── */}
       <footer className="footer">
-        <div className="footer-left"> Isan Anti-Spoofing Project · Northeast Thailand</div>
+        <div className="footer-left"> Man-Khak · Isan Anti-Spoofing Project</div>
         {/* <div className="footer-right">Built with PyTorch · FastAPI · React</div> */}
       </footer>
     </>
