@@ -5,7 +5,7 @@ import HeroSection from "./components/HeroSection";
 import SpectrogramCanvas from "./components/SpectrogramCanvas";
 import { FadeIn } from "./components/FadeIn";
 import DemoSection from "./components/DemoSection";
-import RealSpectrogram from "./components/RealSpectrogram";
+// import RealSpectrogram from "./components/RealSpectrogram";
 
 // ─── CSS INJECTION ────────────────────────────────────────────────────────────
 const STYLES = `
